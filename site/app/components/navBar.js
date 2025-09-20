@@ -1,4 +1,5 @@
 import Link from "next/link"
+import React from "react";
 import { FaShoppingCart, FaHome, AiOutlineStock  } from "react-icons/fa";
 
 const NavBar = () => {
