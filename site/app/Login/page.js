@@ -1,6 +1,7 @@
+"use client";
 import { useState } from "react";
-import Parse from "../parseConfig";
-import styles from "./Login.module.css";
+import Parse from "../services/parse.js";
+import styles from "../styles/TeladeLogin.module.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
