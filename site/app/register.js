@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "next/link";
 import React, {useState} from "react";
 
 const Register = () => {
@@ -8,7 +8,7 @@ const Register = () => {
 
     }
     
-
+    //TODO: redirecionar após cadastro
     return (
         <div>
             <h1> Registre-se: </h1>
