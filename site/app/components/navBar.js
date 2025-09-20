@@ -1,6 +1,8 @@
 import Link from "next/link"
 import React from "react";
-import { FaShoppingCart, FaHome, AiOutlineStock  } from "react-icons/fa";
+import { FaShoppingCart, FaHome  } from "react-icons/fa";
+import { AiOutlineStock } from "react-icons/ai";
+
 
 const NavBar = () => {
     return (
