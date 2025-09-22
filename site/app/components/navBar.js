@@ -16,7 +16,7 @@ const NavBar = () => {
                     <Link href={"/"}> Mercado <AiOutlineStock /> </Link>
                 </li>
                 <li className={styles.navbarItem}>
-                    <Link href={"/"} className={styles.navbarLink}> <FaShoppingCart /> </Link>
+                    <Link href={"/carrinho"} className={styles.navbarLink}> <FaShoppingCart /> </Link>
                 </li>
                 <li className={styles.navbarItem}>
                     <Link href={"/Login"}> Login </Link>
