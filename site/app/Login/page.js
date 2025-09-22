@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import Parse from "../services/parse.js";
@@ -48,6 +49,10 @@ export default function Login() {
         <button type="submit" className={styles.button} onClick={() => router.push("/")}>
           Entrar
         </button>
+
+          <p className={styles.registerLink}>
+              Não tem uma conta? <Link href="/Register">Registre-se</Link>
+          </p>
       </form>
     </div>
   );
