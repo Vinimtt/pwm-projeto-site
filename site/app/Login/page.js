@@ -17,6 +17,7 @@ export default function Login() {
       const user = await Parse.User.logIn(email, password);
       alert(`Bem-vindo ${user.get("username")}!`);
       // redirecionar para outra página se quiser
+      router.push("/")
     } catch (err) {
       setError("Email ou senha inválidos");
       console.error(err);
@@ -46,7 +47,7 @@ export default function Login() {
           className={styles.input}
           required
         />
-        <button type="submit" className={styles.button} onClick={() => router.push("/")}>
+        <button type="submit" className={styles.button}>
           Entrar
         </button>
 
