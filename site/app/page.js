@@ -1,8 +1,9 @@
 "use client";
-import { useState, useEffect } from 'react';
-import Parse from './services/parse.js';
-import NavBar from './components/navBar.js';
 import pokemon from 'pokemontcgsdk';
+import { useEffect, useState } from 'react';
+import Card from './components/Card';
+import NavBar from './components/navBar.js';
+import styles from './page.module.css';
 pokemon.configure({ apiKey: process.env.REACT_APP_API_KEY_POKEMON });
 
 const Page = () => {
@@ -37,25 +38,20 @@ const Page = () => {
       {carregando ? (
         <p>Carregando cartas...</p>
       ) : cartas.length ? (
-        <div className="cartas-grid">
-          {cartas.map((carta) => {
-            const nome = carta.name;
-            const imagem = carta.images?.small;
-            const precoLow = carta.tcgplayer?.prices?.holofoil?.low || "N/A";
-            const precoHigh = carta.tcgplayer?.prices?.holofoil?.high || "N/A";
-
-            return (
-              <div key={carta.id} className="carta-card">
-                {imagem && <img src={imagem} alt={nome} className="carta-imagem" />}
-                <h3>{nome}</h3>
-                <div className="precos">
-                  <span>↓ R$ {precoLow}</span>
-                  <span>↑ R$ {precoHigh}</span>
-                </div>
-                <button className="btn-compra">Lista de Compras</button>
-              </div>
-            );
-          })}
+        <div className={styles['cartas-grid']}>
+          {cartas.map((carta) => (
+            <Card
+              key={carta.id}
+              imagem={carta.images?.small}
+              titulo={carta.name}
+              conjunto={carta.set?.name || "Conjunto desconhecido"}
+              preco={
+                carta.tcgplayer?.prices?.holofoil?.low
+                  ? `R$ ${carta.tcgplayer.prices.holofoil.low}`
+                  : "Preço indisponível"
+              }
+            />
+          ))}
         </div>
       ) : (
         <p>Nenhuma carta encontrada.</p>
