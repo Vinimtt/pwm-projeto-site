@@ -2,8 +2,7 @@
 import { useState, useEffect } from 'react';
 import Parse from './services/parse.js';
 import NavBar from './components/navBar.js';
-import pokemon from 'pokemontcgsdk';
-pokemon.configure({ apiKey: process.env.REACT_APP_API_KEY_POKEMON });
+
 
 const Page = () => {
   const [cartas, setCartas] = useState([]);

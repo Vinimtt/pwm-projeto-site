@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
 import Parse from "../services/parse.js";
 import styles from "../styles/TeladeLogin.module.css";
 
@@ -20,6 +21,8 @@ export default function Login() {
       console.error(err);
     }
   };
+
+  const router = useRouter()
 
   return (
     <div className={styles.container}>
@@ -42,7 +45,7 @@ export default function Login() {
           className={styles.input}
           required
         />
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={styles.button} onClick={() => router.push("/")}>
           Entrar
         </button>
       </form>
