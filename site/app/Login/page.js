@@ -1,5 +1,7 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
 import Parse from "../services/parse.js";
 import styles from "../styles/TeladeLogin.module.css";
 
@@ -15,11 +17,14 @@ export default function Login() {
       const user = await Parse.User.logIn(email, password);
       alert(`Bem-vindo ${user.get("username")}!`);
       // redirecionar para outra página se quiser
+      router.push("/")
     } catch (err) {
       setError("Email ou senha inválidos");
       console.error(err);
     }
   };
+
+  const router = useRouter()
 
   return (
     <div className={styles.container}>
@@ -45,6 +50,10 @@ export default function Login() {
         <button type="submit" className={styles.button}>
           Entrar
         </button>
+
+          <p className={styles.registerLink}>
+              Não tem uma conta? <Link href="/Register">Registre-se</Link>
+          </p>
       </form>
     </div>
   );
