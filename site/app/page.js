@@ -1,17 +1,13 @@
 "use client";
-<<<<<<< HEAD
-import pokemon from 'pokemontcgsdk';
+
 import { useEffect, useState } from 'react';
 import Card from './components/Card';
 import NavBar from './components/navBar.js';
 import styles from './page.module.css';
-pokemon.configure({ apiKey: process.env.REACT_APP_API_KEY_POKEMON });
-=======
-import { useState, useEffect } from 'react';
 import Parse from './services/parse.js';
-import NavBar from './components/navBar.js';
 
->>>>>>> 64c92bf5949942f8101263a0b0896eb497931364
+
+
 
 const Page = () => {
   const [cartas, setCartas] = useState([]);
