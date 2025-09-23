@@ -5,15 +5,14 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../components/navBar";
 import Parse from 'parse';
-import { getCurrentUser } from "../services/auth"; // Importe sua função de obter usuário
-import styles from "../styles/Carrinho.module.css"; // Criaremos este arquivo de estilo
+import { getCurrentUser } from "../services/auth"; // Função para obter usuário logado
+import styles from "../styles/Carrinho.module.css"; // Arquivo de estilo
 
 const CarrinhoPage = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // useEffect será executado quando o componente for montado
   useEffect(() => {
     const fetchCartItems = async () => {
       const currentUser = getCurrentUser();
@@ -23,32 +22,27 @@ const CarrinhoPage = () => {
         return;
       }
 
-      // Cria uma consulta na classe "Carrinho"
       const query = new Parse.Query("Carrinho");
-      
-      // Filtra os resultados para mostrar apenas os do usuário atual
       query.equalTo("nomeUsuario", currentUser.get("username"));
 
       try {
         const results = await query.find();
-        setItems(results); // Armazena os itens encontrados no state
+        setItems(results);
       } catch (err) {
         console.error("Erro ao buscar itens do carrinho:", err);
         setError("Não foi possível carregar os itens do carrinho.");
       } finally {
-        setIsLoading(false); // Finaliza o estado de carregamento
+        setIsLoading(false);
       }
     };
 
     fetchCartItems();
-  }, []); // O array vazio [] garante que o efeito rode apenas uma vez
+  }, []);
 
   // Calcula o valor total do carrinho
-  const total = items.reduce((sum, item) => {
-    return sum + item.get("valorCarta");
-  }, 0);
+  const total = items.reduce((sum, item) => sum + item.get("valorCarta"), 0);
 
-  // Renderização do conteúdo
+  // Renderiza o conteúdo do carrinho
   const renderContent = () => {
     if (isLoading) {
       return <p>Carregando carrinho...</p>;
@@ -68,6 +62,22 @@ const CarrinhoPage = () => {
               <span className={styles.itemPrice}>
                 {item.get("valorCarta").toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
               </span>
+              {/* Botão de remover */}
+              <button
+                className={styles.removeButton}
+                onClick={async () => {
+                  if (!confirm(`Deseja remover ${item.get("nomeCarta")} do carrinho?`)) return;
+                  try {
+                    await item.destroy(); // Remove do Back4App
+                    setItems(items.filter((i) => i.id !== item.id)); // Atualiza o state
+                  } catch (err) {
+                    console.error("Erro ao remover item:", err);
+                    alert("Não foi possível remover o item do carrinho.");
+                  }
+                }}
+              >
+                Remover
+              </button>
             </li>
           ))}
         </ul>
