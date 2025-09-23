@@ -48,7 +48,6 @@ const Page = () => {
         </p>
       </header>
       <main className={styles.main}>
-        {erro && <p className={styles['texto-destaque']}>Erro: {erro}</p>}
         {carregando ? (
           <div className={styles['loader-container']}>
             <div className={styles['loader']}></div>
