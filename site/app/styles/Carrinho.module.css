@@ -1,0 +1,58 @@
+/* /styles/Carrinho.module.css */
+
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.container h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.itemList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.itemName {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+.itemPrice {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.total {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid #333;
+  text-align: right;
+  font-size: 1.5rem;
+}
+
+.error {
+  text-align: center;
+  color: #d32f2f;
+  font-size: 1.1rem;
+}
